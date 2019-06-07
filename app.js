@@ -6,6 +6,7 @@ var userRoute = require('./routes/user.route')
 var catRoute = require('./routes/category.route')
 var proRoute = require('./routes/product.route')
 var authRoute = require('./routes/auth.route')
+var indexRoute = require('./routes/index.route')
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
@@ -17,10 +18,10 @@ app.use(express.static(__dirname + "/public"));
 
 var port = 3000;
 
-app.get('/', function(request,response){
-	response.render("home");	
-} );
-
+// app.get('/', function(request,response){
+// 	response.render("home");	
+// } );
+app.use('/', indexRoute);
 app.use('/users',userRoute);
 app.use('/category',catRoute);
 app.use('/product',proRoute);
