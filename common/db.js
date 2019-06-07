@@ -26,7 +26,7 @@ module.exports = {
           });
        });
     },
-    add: (tablename,entity) => {
+    add: (tableName,entity) => {
         return new Promise((resolve,reject) => {
             var sql = `insert into ${tableName} set ?`;
             var connection = createConnection();
