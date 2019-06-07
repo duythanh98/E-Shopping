@@ -7,14 +7,18 @@ var catRoute = require('./routes/category.route')
 var proRoute = require('./routes/product.route')
 var authRoute = require('./routes/auth.route')
 var indexRoute = require('./routes/index.route')
-app.set('view engine', 'ejs');
-app.set('views', './views');
 
+// app.set('view engine', 'ejs');
+// app.set('views', './views');
 
 app.use(morgan("dev"));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(__dirname + "/public"));
+
+require('./middlewares/view-engine')(app);
+require('./middlewares/session')(app);
+require('./middlewares/passport')(app);
 
 var port = 3000;
 
