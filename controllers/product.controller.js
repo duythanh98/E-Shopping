@@ -1,23 +1,31 @@
-var productModel = require("../models/product");
+var productDB = require("../models/product");
 
-module.exports.index = function(req,res) {
-    var listProduct = productModel.all();
-    listProduct.then(rows => {
-        console.log(rows);
-        res.render("products/index", {
-            list : rows
+
+module.exports.detail = function(req,res) {
+    var ProId = req.params.id;
+    var CatId = req.params.catId;
+    
+    Promise.all([productDB.single(ProId),
+    productDB.getSameCatProduct(CatId)]).then(([proInfo,sameCatProducts]) => {
+        res.render("products/detail",{
+            proInfo : proInfo,
+            sameCatProducts: sameCatProducts
         });
     }).catch(err => {
         console.log(err);
+        res.end();
     })
 }
 
-module.exports.detail = function(req,res) {
-    res.render("products/detail");
-}
-
 module.exports.archive = function(req,res){
-    res.render("products/archive-page");
+    var CatId = req.params.catId;
+
+    Promise.all([productDB.getSameCatProduct(CatId)]).then(([sameCatProducts]) => {
+        res.render("products/archive-page",{
+            sameCatProducts: sameCatProducts
+        });
+    })
+   
 }
 
 module.exports.cart = function(req,res){

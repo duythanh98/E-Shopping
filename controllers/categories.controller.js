@@ -1,16 +1,16 @@
-var categoryModel = require("../models/category");
-var listCategory = categoryModel.all();
+// var categoryModel = require("../models/category");
+// var listCategory = categoryModel.all();
 
-module.exports.index = function(req,res){
-    var listCategory = categoryModel.all();
-    listCategory.then(rows => {
-        res.render("categories/index", {
-            list : rows
-        });
-    }).catch(err => {
-        console.log(err);
-    })
-};
+// module.exports.index = function(req,res){
+//     var listCategory = categoryModel.all();
+//     listCategory.then(rows => {
+//         res.render("categories/index", {
+//             list : rows
+//         });
+//     }).catch(err => {
+//         console.log(err);
+//     })
+// };
 
 module.exports.add = function(req,res){
     res.render("categories/add");

@@ -1,17 +1,17 @@
-var userModel = require("../models/user");
 
-module.exports.index = function(req,res){
-    var listUser = userModel.all();
-    listUser.then(rows => {
-        console.log(rows);
-        res.render('users/user', {
-            users: rows
-        })
-    }).catch(err => {
-        console.log(err);
-    })
+
+// module.exports.index = function(req,res){
+//     var listUser = userModel.all();
+//     listUser.then(rows => {
+//         console.log(rows);
+//         res.render('users/user', {
+//             users: rows
+//         })
+//     }).catch(err => {
+//         console.log(err);
+//     })
     
-};
+// };
 
 module.exports.add = function(req,res){
     res.render('users/add');
