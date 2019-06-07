@@ -203,7 +203,10 @@
             $("#registerForm").validate({
                 rules: {
                     username: {
-                        required: true
+                        required: true,
+						remote: {
+							url: '/auth/is-available'
+						}
                     },
                     password: {
                         required: true,
