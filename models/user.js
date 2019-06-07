@@ -1,13 +1,10 @@
-var db = require("../common/userdb");
+var db = require("../common/db");
 
-function loadAll() {
-    return db.load("SELECT * FROM user")
-}
-
-function addUser(entity){
-    return db.add(entity);
-}
 module.exports = {
-    all: loadAll,
-    add: addUser
+    singleByUsername: username => {
+        return db.load(`SELECT * FROM clients WHERE CliUserName = '${username}'`);
+    },
+    add: (entity) => {
+        return db.add('clients',entity);
+    }
 }
