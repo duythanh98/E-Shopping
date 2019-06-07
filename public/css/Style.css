@@ -79,6 +79,14 @@
 	cursor: pointer;
 }
 
+.carousel-image {
+	background: #200122; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #200122, #6f0000); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #200122, #6f0000);
+	text-align: center;
+	height: 35rem;
+}
+
 @media screen and (max-width: 1024px){
 	.nav-links{
 	 width: 40%;
@@ -89,8 +97,10 @@
 	body{
 		overflow-x: hidden;
 	}
-
-
+	.carousel-image {
+		
+		height: 15rem;
+	}
 	.child-links {
 		display: none;
 		transition: all 0.5s ease;
@@ -153,17 +163,23 @@
 	transform: rotate(45deg) translate(-5px,-4px) ; 
 }
 
-.carousel-image {
-	background-color: #5d4954;
-	height: 40rem;
-}
+
 
 .scale-image{
 	height: 100%;
-	width: 100%;
+	width: 50%;
 	margin-left: 0%;
+	transition: all 0.5s;
 }
-
+.overlay-carousel {
+	height: 100%;
+	width: 100%;
+	transition: all 0.5s;
+}
+.scale-image:hover {
+	opacity: 0.6;
+	transform: scale(0.85);
+}
 .menu-product{
 	margin-top: 5%;
 }
@@ -325,15 +341,15 @@
 .load-more{
 	display: flex;
 	justify-content: center;
+	align-items: center;
 }
 .load-more-btn{
 	background: #EB7327;
-	padding: 10px 20px;
 	font-weight: bold;
 	color: black;
+	padding: 10px;
 	border-radius: 10px;
 	transition: all 0.5s;
-	margin-bottom: 10px;
 }
 .load-more-btn:hover{
 	background-color: #eaaa10;
@@ -459,6 +475,8 @@
 	background-color: #5d4954;
 	border-radius: 10px;
 	margin-top: 13%;
+	position: sticky;
+	top: 0;
 	box-shadow: 5px 0px 5px  #666;
 }
 
@@ -506,6 +524,7 @@
 
 .top-selling{
 	box-shadow: 5px 5px 5px #333;
+	margin-left: 15%;
 }
 
 .input-code{
