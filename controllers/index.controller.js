@@ -7,7 +7,7 @@ module.exports.home = function(req,res){
     catDB.topCat(),
     productDB.topSellProduct()])
     .then(([allProduct, newProducts, topCats, topSellPros]) => {
-        console.log(topSellPros);
+
         res.render("home", {
             allProduct: allProduct,
             newProducts: newProducts,
