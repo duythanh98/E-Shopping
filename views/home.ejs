@@ -48,23 +48,22 @@
 		<div class=" top-index">
 		<h1 class="text-center" >TOP BEST-SELLING PRODUCTS</h1>
 		<div class="col-12">
-			<div id="carouselExampleControls" class="carousel slide top-selling"  data-ride="carousel">
+			<div id="carouselExampleControls" class="carousel slide top-selling" style="width: 70%;"  data-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active carousel-image">
-						<a href="/product/archive">
-							<img src="/images/1.jpg" class=" scale-image" alt="...">
-						</a>
+						<div class="overlay-carousel">
+							<a href="/product/detail/<%=topSellPros[0].ProId %> & <%= topSellPros[0].ProCat%>">
+								<img src="<%= topSellPros[0].ProImg %>" class=" scale-image" alt="...">
+							</a>
+						</div>
 					</div>
-					<div class="carousel-item carousel-image ">
-						<a href="/product/archive">
-							<img src="/images/2.jpg" class=" scale-image" alt="...">
-						</a>
-					</div>
-					<div class="carousel-item carousel-image">
-						<a href="/product/archive">
-							<img src="/images/1.jpg" class=" scale-image" alt="...">
-						</a>
-					</div>
+					<% for(var i = 1; i < topSellPros.length; i++) { %>
+						<div class="carousel-item carousel-image">
+							<a href="/product/detail/<%=topSellPros[i].ProId %> & <%= topSellPros[i].ProCat%>">
+								<img src="<%= topSellPros[i].ProImg %>" class=" scale-image" alt="...">
+							</a>
+						</div>
+					<% } %>
 				</div>
 				<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -86,86 +85,16 @@
 				</form>
 			</div>
 			<div class="row list-product">
+				<% for(var i=0; i < allProduct.length; i++) { %>
 				<div class="Component">
-					<a class="Image" href="/product/detail"></a>
-					<a class="Name-Product" href="/product/detail">Sao trên trời rất xa, sao của anh thật gần</a> 
-					<label class="Price-Product">$100.00</label>
+					<a class="Image" href="/product/detail/<%= allProduct[i].ProId %> & <%= allProduct[i].ProCat%>" style="background-image: url('<%= allProduct[i].ProImg %>')"></a>
+					<a class="Name-Product" href="/product/detail/<%= allProduct[i].ProId %> & <%= allProduct[i].ProCat%>"><%= allProduct[i].ProName %></a> 
+					<label class="Price-Product"><%= allProduct[i].ProCurrentPrice %> VND</label>
 					<button class="AddToCart">
 						<i class="fas fa-cart-plus"></i>
 					</button>
 				</div>
-				<div class="Component">
-					<a class="Image" href="/product/archive"></a>
-					<a class="Name-Product" href="/product/archive">Sao trên trời rất xa, sao của anh thật gần</a> 
-					<label class="Price-Product">$100.00</label>
-					<button class="AddToCart">
-						<i class="fas fa-cart-plus"></i>
-					</button>
-				</div>
-				<div class="Component">
-					<a class="Image" href=""></a>
-					<a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-					<label class="Price-Product">$100.00</label>
-					<button class="AddToCart">
-							<i class="fas fa-cart-plus"></i>
-					</button>
-				</div>
-				<div class="Component">
-					<a class="Image" href=""></a>
-					<a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-					<label class="Price-Product">$100.00</label>
-					<button class="AddToCart">
-							<i class="fas fa-cart-plus"></i>
-					</button>
-				</div>
-				<div class="Component">
-					<a class="Image" href=""></a>
-					<a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-					<label class="Price-Product">$100.00</label>
-					<button class="AddToCart">
-							<i class="fas fa-cart-plus"></i>
-					</button>
-				</div>
-				<div class="Component">
-					<a class="Image" href=""></a>
-					<a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-					<label class="Price-Product">$100.00</label>
-					<button class="AddToCart">
-							<i class="fas fa-cart-plus"></i>
-					</button>
-				</div>
-				<div class="Component">
-					<a class="Image" href=""></a>
-					<a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-					<label class="Price-Product">$100.00</label>
-					<button class="AddToCart">
-							<i class="fas fa-cart-plus"></i>
-					</button>
-				</div>
-				<div class="Component">
-					<a class="Image" href=""></a>
-					<a class="Name-Product" href="#">Sao trên trời rất xa, sao của anh thật gần</a> 
-					<label class="Price-Product">$100.00</label>
-					<button class="AddToCart">
-							<i class="fas fa-cart-plus"></i>
-					</button>
-				</div>
-				<div class="Component">
-					<a class="Image" href=""></a>
-					<a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-					<label class="Price-Product">$100.00</label>
-					<button class="AddToCart">
-							<i class="fas fa-cart-plus"></i>
-					</button>
-				</div>
-				<div class="Component">
-					<a class="Image" href=""></a>
-					<a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-					<label class="Price-Product">$100.00</label>
-					<button class="AddToCart">
-							<i class="fas fa-cart-plus"></i>
-					</button>
-				</div>	
+				<% } %>
 				<div class="row col-12 load-more text-center">
 					<a href="" class="load-more-btn">LOAD MORE</a>
 				</div>
@@ -175,30 +104,16 @@
 	<div class="container">
 		<h1 class="text-center" style="margin: 5% 0%; border-bottom: 2px solid #F9B500; padding-bottom: 1%;font-weight: bold;">MỘT SỐ THỂ LOẠI PHỔ BIẾN</h1>
 		<div class="row">
-			<div class="cate-component">
-				<a href="/product/archive">
-					<div class="overlay">
-						<h1>Tiểu thuyết</h1>
-						<h3>(12)</h3>
-					</div>
-				</a>
-			</div>
-			<div class="cate-component ">
-				<a href="/product/archive">
-					<div class="overlay">
-						<h1>Trinh thám</h1>
-						<h3>(12)</h3>
-					</div>
-				</a>
-			</div>
-			<div class="cate-component ">
-				<a href="/product/archive">
-					<div class="overlay">
-						<h1>Tiểu thuyết</h1>
-						<h3>(12)</h3>
-					</div>
-				</a>
-			</div>
+			<% for(var i = 0; i < popCats.length; i++) { %>
+				<div class="cate-component" style="background-image: url('<%= popCats[i].img %>')">
+					<a href="/product/archive/<%= popCats[i].CatId %>">
+						<div class="overlay">
+							<h1><%= popCats[i].CatName %></h1>
+							<h3>(<%= popCats[i].count %>)</h3>
+						</div>
+					</a>
+				</div>
+			<% } %>
 		</div>
 		
 	</div>
@@ -207,113 +122,27 @@
 			<div class="col-8">
 				<h1 class="text-center title-footer">RECENT PRODUCTS</h1>
 				<div class="row list-product">
-					<div class="Component">
-						<a class="Image" href="/product/archive"></a>
-						<a class="Name-Product" href="/product/archive">Sao trên trời rất xa, sao của anh thật gần</a> 
-						<label class="Price-Product">$100.00</label>
-						<button class="AddToCart">
+					<% for(var i=0; i < newProducts.length; i++) { %>
+						<div class="Component">
+							<a class="Image" href="/product/detail/<%= newProducts[i].ProId %> & <%= newProducts[i].ProCat%>" style="background-image: url('<%= newProducts[i].ProImg %>')"></a>
+							<a class="Name-Product" href="/product/detail/<%= newProducts[i].ProId %> & <%= newProducts[i].ProCat%>"><%= newProducts[i].ProName %></a> 
+							<label class="Price-Product"><%= newProducts[i].ProCurrentPrice %> VND</label>
+							<button class="AddToCart">
 								<i class="fas fa-cart-plus"></i>
-						</button>
-					</div>
-					<div class="Component">
-						<a class="Image" href=""></a>
-						<a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-						<label class="Price-Product">$100.00</label>
-						<button class="AddToCart">
-								<i class="fas fa-cart-plus"></i>
-						</button>
-					</div>
-					<div class="Component">
-						<a class="Image" href=""></a>
-						<a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-						<label class="Price-Product">$100.00</label>
-						<button class="AddToCart">
-								<i class="fas fa-cart-plus"></i>
-						</button>
-					</div>
-					<div class="Component">
-						<a class="Image" href=""></a>
-						<a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-						<label class="Price-Product">$100.00</label>
-						<button class="AddToCart">
-								<i class="fas fa-cart-plus"></i>
-						</button>
-					</div>
-					<div class="Component">
-						<a class="Image" href=""></a>
-						<a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-						<label class="Price-Product">$100.00</label>
-						<button class="AddToCart">
-								<i class="fas fa-cart-plus"></i>
-						</button>
-					</div>
-					<div class="Component">
-						<a class="Image" href=""></a>
-						<a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-						<label class="Price-Product">$100.00</label>
-						<button class="AddToCart">
-								<i class="fas fa-cart-plus"></i>
-						</button>
-					</div>
+							</button>
+						</div>
+					<% } %>
 				</div>
 			</div>
 			<div class="col-4">
 				<h1 class="title-footer text-center">TOP CATEGORIES</h1>
 				<ul class="list-group list-footer">
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<a href="/product/archive" class="Name-Product-1 text-left">Tiểu thuyết</a>
-						<span class="badge badge-primary badge-pill">14</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<a href="/product/archive" class="Name-Product-1 text-left">Tiểu thuyết</a>
-						<span class="badge badge-primary badge-pill">14</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<a href="" class="Name-Product-1 text-left">Tiểu thuyết</a>
-						<span class="badge badge-primary badge-pill">14</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<a href="" class="Name-Product-1 text-left">Tiểu thuyết</a>
-						<span class="badge badge-primary badge-pill">14</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<a href="" class="Name-Product-1 text-left">Tiểu thuyết</a>
-						<span class="badge badge-primary badge-pill">14</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<a href="" class="Name-Product-1 text-left">Tiểu thuyết</a>
-						<span class="badge badge-primary badge-pill">14</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<a href="" class="Name-Product-1 text-left">Tiểu thuyết</a>
-						<span class="badge badge-primary badge-pill">14</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<a href="" class="Name-Product-1 text-left">Tiểu thuyết</a>
-						<span class="badge badge-primary badge-pill">14</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<a href="" class="Name-Product-1 text-left">Tiểu thuyết</a>
-						<span class="badge badge-primary badge-pill">14</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<a href="" class="Name-Product-1 text-left">Tiểu thuyết</a>
-						<span class="badge badge-primary badge-pill">14</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<a href="" class="Name-Product-1 text-left">Tiểu thuyết</a>
-						<span class="badge badge-primary badge-pill">14</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<a href="" class="Name-Product-1 text-left">Tiểu thuyết</a>
-						<span class="badge badge-primary badge-pill">14</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<a href="" class="Name-Product-1 text-left">Tiểu thuyết</a>
-						<span class="badge badge-primary badge-pill">14</span>
-					</li>
-
-					
+					<% for(var i = 0; i< topCats.length; i++) { %>
+						<li class="list-group-item d-flex justify-content-between align-items-center ">
+							<a href="/product/archive/<%= topCats[i].CatId %>" class="Name-Product-1 text-left"><%= topCats[i].CatName %></a>
+							<span class="badge badge-primary badge-pill"><%= topCats[i].count %></span>
+						</li>
+					<% } %>
 				</ul>
 			</div>
 		</div>

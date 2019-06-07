@@ -46,19 +46,19 @@
                     <div class="detail-header col-12" style="margin: 1rem 0px;">
                         <a href="" class="Name-Product" style="font-size: 1.1rem">HOME</a> /
                         <a href="" class="Name-Product" style="font-size: 1.1rem">CATEGORY</a> /
-                        <label for="" style="font-size: 1.1rem">SAO TRÊN TRỜI RẤT XA, SAO CỦA ANH THẬT GẦN</label>
+                        <label for="" style="font-size: 1.1rem"><%= proInfo[0].ProName %></label>
                     </div>
                     <div class="row">
                         <div class="col-6">
-                          <img src="/images/1.jpg" class="img-product" alt="">
+                          <img src="<%= proInfo[0].ProImg %>" class="img-product" alt="">
                         </div>
                         <div class="col-6">
-                            <h2 class="text-center" style="margin-bottom: 2rem;">Sao trên trời rất xa, sao của anh thật gần</h2>
+                            <h2 class="text-center" style="margin-bottom: 2rem;"><%= proInfo[0].ProName %></h2>
                             <label style="font-size: 1.5rem">Giá tiền:</label>
-                            <label class="Price-Product" style="font-size: 1.5rem">100.000</label><br>
+                            <label class="Price-Product" style="font-size: 1.5rem"><%= proInfo[0].ProCurrentPrice %></label><br>
                             <label style="font-size: 1.5rem">Tác giả:</label>
-                            <label class="Price-Product" style="font-size: 1.5rem">Harry Potter</label><br>
-                            <p class="" style="font-size: 1.25rem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa consequatur sequi quae quas voluptas eaque eligendi officiis mollitia, labore, nesciunt cupiditate non nobis omnis fuga nostrum! Delectus corrupti repudiandae atque?</p>
+                            <label class="Price-Product" style="font-size: 1.5rem"><%= proInfo[0].ProAuthor %></label><br>
+                            <p class="" style="font-size: 1.25rem"><%= proInfo[0].ProDescription.slice(0,350) %>....</p>
                             <a href="" class="btn btn-primary text-center">
                                 <i class="fas fa-cart-plus"></i> ADD TO CART
                             </a>
@@ -108,54 +108,16 @@
                         
                         <h2 class="text-center col-12" style="border-bottom: 2px solid #eaaa10; padding-bottom: 3%; font-weight: bold;">CÁC SẢN PHẨM LIÊN QUAN</h2>
                         <div class="row list-product">
-                            <div class="Component">
-                                <a class="Image" href=""></a>
-                                <a class="Name-Product" href="#">Sao trên trời rất xa, sao của anh thật gần</a> 
-                                <label class="Price-Product">$100.00</label>
-                                <button class="AddToCart">
-                                    <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
-                            <div class="Component">
-                                <a class="Image" href=""></a>
-                                <a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-                                <label class="Price-Product">$100.00</label>
-                                <button class="AddToCart">
+                            <% for(var i=0; i < sameCatProducts.length; i++) { %>
+                                <div class="Component">
+                                    <a class="Image" href="/product/detail/<%= sameCatProducts[i].ProId %> & <%= sameCatProducts[i].ProCat%>" style="background-image: url('<%= sameCatProducts[i].ProImg %>')"></a>
+                                    <a class="Name-Product" href="/product/detail/<%= sameCatProducts[i].ProId %> & <%= sameCatProducts[i].ProCat%> "><%= sameCatProducts[i].ProName %></a> 
+                                    <label class="Price-Product"><%= sameCatProducts[i].ProCurrentPrice %> VND</label>
+                                    <button class="AddToCart">
                                         <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
-                            <div class="Component">
-                                <a class="Image" href=""></a>
-                                <a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-                                <label class="Price-Product">$100.00</label>
-                                <button class="AddToCart">
-                                        <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
-                            <div class="Component">
-                                <a class="Image" href=""></a>
-                                <a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-                                <label class="Price-Product">$100.00</label>
-                                <button class="AddToCart">
-                                        <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
-                            <div class="Component">
-                                <a class="Image" href=""></a>
-                                <a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-                                <label class="Price-Product">$100.00</label>
-                                <button class="AddToCart">
-                                        <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
-                            <div class="Component">
-                                <a class="Image" href=""></a>
-                                <a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-                                <label class="Price-Product">$100.00</label>
-                                <button class="AddToCart">
-                                        <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
+                                    </button>
+                                </div>
+                            <% } %>
                         </div>
 
                     </div>

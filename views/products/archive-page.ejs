@@ -47,7 +47,7 @@
                         <a href="" class="Name-Product" style="font-size: 1.1rem">HOME</a> /
                         <a href="" class="Name-Product" style="font-size: 1.1rem">TIỂU THUYẾT</a>
                     </div>
-                    <select class="custom-select custom-select-lg mb-1" style="width:22%; margin-left: 2%;">
+                    <select class="custom-select custom-select-lg mb-1" style="width:95%; margin-left: 2%; display: inline-block;">
                         <option selected>Mặc định</option>
                         <option value="1">Giá giảm dần</option>
                         <option value="2">Giá tăng dần</option>
@@ -55,54 +55,17 @@
                     </select>
                     <div class="row">
                         <div class="row list-product">
-                            <div class="Component">
-                                <a class="Image" href=""></a>
-                                <a class="Name-Product" href="#">Sao trên trời rất xa, sao của anh thật gần</a> 
-                                <label class="Price-Product">$100.00</label>
-                                <button class="AddToCart">
+
+                          	<% for(var i=0; i < sameCatProducts.length; i++) { %>
+                                <div class="Component">
+                                    <a class="Image" href="/product/detail/<%= sameCatProducts[i].ProId %> & <%= sameCatProducts[i].ProCat%>" style="background-image: url('<%= sameCatProducts[i].ProImg %>')"></a>
+                                    <a class="Name-Product" href="/product/detail/<%= sameCatProducts[i].ProId %> & <%= sameCatProducts[i].ProCat%>"><%= sameCatProducts[i].ProName %></a> 
+                                    <label class="Price-Product"><%= sameCatProducts[i].ProCurrentPrice %> VND</label>
+                                    <button class="AddToCart">
                                         <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
-                            <div class="Component">
-                                <a class="Image" href=""></a>
-                                <a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-                                <label class="Price-Product">$100.00</label>
-                                <button class="AddToCart">
-                                        <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
-                            <div class="Component">
-                                <a class="Image" href=""></a>
-                                <a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-                                <label class="Price-Product">$100.00</label>
-                                <button class="AddToCart">
-                                        <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
-                            <div class="Component">
-                                <a class="Image" href=""></a>
-                                <a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-                                <label class="Price-Product">$100.00</label>
-                                <button class="AddToCart">
-                                        <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
-                            <div class="Component">
-                                <a class="Image" href=""></a>
-                                <a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-                                <label class="Price-Product">$100.00</label>
-                                <button class="AddToCart">
-                                        <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
-                            <div class="Component">
-                                <a class="Image" href=""></a>
-                                <a class="Name-Product" href="">Sao trên trời rất xa, sao của anh thật gần</a> 
-                                <label class="Price-Product">$100.00</label>
-                                <button class="AddToCart">
-                                        <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
+                                    </button>
+                                </div>
+                            <% } %>
                         </div>
                         <div class="row col-12 load-more text-center">
                             <a href="" class="load-more-btn">LOAD MORE</a>
