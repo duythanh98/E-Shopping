@@ -7,7 +7,7 @@ var catRoute = require('./routes/category.route')
 var proRoute = require('./routes/product.route')
 var authRoute = require('./routes/auth.route')
 var indexRoute = require('./routes/index.route')
-
+var pageRoute = require('./routes/page.route')
 // app.set('view engine', 'ejs');
 // app.set('views', './views');
 
@@ -30,6 +30,7 @@ app.use('/users',userRoute);
 app.use('/category',catRoute);
 app.use('/product',proRoute);
 app.use('/auth',authRoute);
+app.use('/page',pageRoute);
 app.listen(port, function(){
     console.log("Hello world on port 3000!")	
 });
