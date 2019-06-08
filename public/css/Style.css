@@ -80,9 +80,10 @@
 }
 
 .carousel-image {
-	background: #200122; /* fallback for old browsers */
-	background: -webkit-linear-gradient(to left, #200122, #6f0000); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to left, #200122, #6f0000);
+	/* background: #200122; 
+	background: -webkit-linear-gradient(to left, #200122, #6f0000); 
+	background: linear-gradient(to left, #200122, #6f0000); */
+	background-color: white;
 	text-align: center;
 	height: 35rem;
 }
@@ -350,6 +351,7 @@
 	padding: 10px;
 	border-radius: 10px;
 	transition: all 0.5s;
+	
 }
 .load-more-btn:hover{
 	background-color: #eaaa10;
@@ -523,7 +525,7 @@
 }
 
 .top-selling{
-	box-shadow: 5px 5px 5px #333;
+	/* box-shadow: 5px 5px 5px #333; */
 	margin-left: 15%;
 }
 
