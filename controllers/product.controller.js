@@ -1,6 +1,5 @@
 var productDB = require("../models/product");
 
-
 module.exports.detail = function(req,res) {
     var ProId = req.params.id;
     var CatId = req.params.catId;
@@ -19,10 +18,14 @@ module.exports.detail = function(req,res) {
 
 module.exports.archive = function(req,res){
     var CatId = req.params.catId;
-
-    Promise.all([productDB.getSameCatProduct(CatId)]).then(([sameCatProducts]) => {
+   
+    Promise.all([productDB.getSameCatProduct(CatId),
+    productDB.getNumberOfProductByCate(CatId)]).then(([sameCatProducts,max]) => {
+       
         res.render("products/archive-page",{
-            sameCatProducts: sameCatProducts
+            sameCatProducts: sameCatProducts,
+            catID: CatId,
+            max: max[0].count
         });
     })
    
@@ -30,4 +33,24 @@ module.exports.archive = function(req,res){
 
 module.exports.cart = function(req,res){
     res.render("products/cart");
+}
+
+module.exports.pageByCat = function(req,res){
+
+    //Pagination
+    var page = req.params.page;
+    let perPage = 5;
+    let proPerPage = perPage * (page-1);
+    
+    //Get current category
+    var catID = parseInt (req.params.catID);
+    console.log(page);
+    productDB.pageByCate(catID,page,proPerPage).then(rows => {
+        res.render('pagination/page',{
+            allProduct: rows
+        });
+    }).catch(err => {
+        console.log(err);
+    })
+    
 }
