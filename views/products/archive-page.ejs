@@ -67,9 +67,10 @@
                                 </div>
                             <% } %>
                         </div>
-                        <div class="row col-12 load-more text-center">
-                            <a href="" class="load-more-btn">LOAD MORE</a>
-                        </div>
+                       
+                    </div>
+                    <div class="row col-12 load-more text-center">
+                        <button class="load-more-btn" id="btnLoadmore">LOAD MORE</button>
                     </div>
                 </div>
                 <div class="col-4">
@@ -243,8 +244,17 @@
     </footer>
 	<script src="/js/nav.js"></script>
 	<script>
+        let soTrang = 1;
+		let tempCur = "<%=sameCatProducts.length%>";
+        let current = parseInt(tempCur);
+        console.log("<%=max%>");
 		$(document).ready(function(){
 
+            if(current >= '<%=max%>')
+            {
+                $('#btnLoadmore').css("visibility","hidden")
+            }
+            
 			$(window).scroll(function(){
 				if($(this).scrollTop() > 40) 
 				{
@@ -258,6 +268,30 @@
 			$("#topBtn").click(function(){
 				$("html,body").animate({scrollTop: 0},800);
 			});
+
+            $(document).on("click","#btnLoadmore",function(){
+				soTrang += 1;
+				
+				$.ajax({
+					async: false,
+					type: 'GET',
+					url: "../archive/" + '<%=catID%>'+ "/" +soTrang,
+					success: function(res){
+						$('#allProduct').append(res);
+					},
+					error: function(xhr,ajaxOption,thrownError){
+						alert("Fail");
+					}
+                })
+                
+                current += 5;
+				
+				if(current >= '<%=max%>')
+				{
+					$('#btnLoadmore').css("visibility","hidden")
+				}
+			})
+       
 		})
 	</script>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

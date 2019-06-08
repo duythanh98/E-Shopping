@@ -79,12 +79,9 @@
 	<div class="container menu-product ">
 		<h1 class="text-center">ALL PRODUCTS</h1>
 			<div class="search-bar">
-				<form >
-					<input type="text">
-					<button><i class="fas fa-search"></i></button>
-				</form>
+				<input type="text" name="nameSearch" id="txtSearch" placeholder="Nhập nội dung muốn tìm kiểm....">
 			</div>
-			<div class="row list-product">
+			<div class="row list-product" id="allProduct">
 				<% for(var i=0; i < allProduct.length; i++) { %>
 				<div class="Component">
 					<a class="Image" href="/product/detail/<%= allProduct[i].ProId %> & <%= allProduct[i].ProCat%>" style="background-image: url('<%= allProduct[i].ProImg %>')"></a>
@@ -95,9 +92,10 @@
 					</button>
 				</div>
 				<% } %>
-				<div class="row col-12 load-more text-center">
-					<a href="" class="load-more-btn">LOAD MORE</a>
-				</div>
+				
+			</div>
+			<div class="row col-12 load-more text-center">
+				<button class="load-more-btn" id="btnLoadmore">LOAD MORE</button>
 			</div>
 		</div>
 	</div>
@@ -234,6 +232,10 @@
 	</footer>	
 	
 	<script>
+		let soTrang = 1;
+		let tempCur = "<%=allProduct.length%>";
+		let current = parseInt(tempCur);
+		
 		$(document).ready(function(){
 
 			$(window).scroll(function(){
@@ -249,6 +251,51 @@
 			$("#topBtn").click(function(){
 				$("html,body").animate({scrollTop: 0},800);
 			});
+
+			$(document).on("click","#btnLoadmore",function(){
+
+				soTrang += 1;
+				
+				$.ajax({
+					async: false,
+					type: 'GET',
+					url: "../page/"+soTrang,
+					success: function(res){
+						$('#allProduct').append(res);
+						console.log(res);
+					},
+					error: function(xhr,ajaxOption,thrownError){
+						alert("Fail");
+					}
+				})
+
+				current += 5;
+				console.log(current);
+				if(current == '<%=max%>')
+				{
+					$('#btnLoadmore').css("visibility","hidden")
+				}
+			})
+
+			$(document).on("keyup","#txtSearch", function(){
+				var data = $(this).val();
+				
+				$.ajax({
+					async: false,
+					type: "POST",
+					url: "../search",
+					contentType: "application/x-www-form-urlencoded",
+					dataType: "html",
+					data: {data:data},
+					success: function(res){
+						$('#allProduct').replaceWith(res);
+					},
+					error: function(xhr,ajaxOption,thrownError){
+						alert("Failed");
+					}
+				})
+			})
+			
 		})
 	</script>
 	<script src="/js/nav.js"></script>
