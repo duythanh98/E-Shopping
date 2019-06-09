@@ -18,8 +18,9 @@
 			<div class="logo">
 				<h4>BOOK STORE</h4>
 			</div>
+			<form action="/auth/logout" method="POST" id="frmSignout"></form>
 			<ul class="nav-links">
-				<li><a href="">HOME <i class="fas fa-chevron-down"></i></a></li>
+				<li><a href="">HOME </a></li>
 				<li><a href="">ABOUT <i class="fas fa-chevron-down"></i></a>
 					
 					<ul class="child-links">
@@ -28,13 +29,23 @@
 					</ul>
 					
 				</li>
-				<li><a href="">USER <i class="fas fa-chevron-down"></i></a>
-					<ul class="child-links">
-						<li><a href="/auth/login">Login</a></li>
-						<li><a href="/auth/register">Register</a></li>
-					</ul>
-				</li>
-				<li><a href="/product/cart">CART <i class="fas fa-cart-plus"></i></a></li>
+				<% if(isAuthenticated != true){ %>
+					<li><a href="">USER <i class="fas fa-chevron-down"></i></a>
+						<ul class="child-links">
+							<li><a href="/auth/login">Login</a></li>
+							<li><a href="/auth/register">Register</a></li>
+						</ul>
+					</li>
+				<% } %>
+				<% if(isAuthenticated == true){ %>
+					<li><a href="">Hi,Tien<i class="fas fa-chevron-down"></i></a>
+						<ul class="child-links">
+							<li><a href="javascript: $('#frmSignout').submit();">Logout</a></li>
+							<li><a href="/auth/profile">Profile</a></li>
+						</ul>
+					</li>
+				<% } %>
+				<li><a href="/product/cart"><i class="fas fa-cart-plus"></i> <span><%=numberOfProInCart %></span></a></li>
 			</ul>
 			<div class="burger">
 				<div class="line1"></div>
@@ -87,9 +98,9 @@
 					<a class="Image" href="/product/detail/<%= allProduct[i].ProId %> & <%= allProduct[i].ProCat%>" style="background-image: url('<%= allProduct[i].ProImg %>')"></a>
 					<a class="Name-Product" href="/product/detail/<%= allProduct[i].ProId %> & <%= allProduct[i].ProCat%>"><%= allProduct[i].ProName %></a> 
 					<label class="Price-Product"><%= allProduct[i].ProCurrentPrice %> VND</label>
-					<button class="AddToCart">
+					<a href="/product/cart/add/<%= allProduct[i].ProId %>" class="AddToCart">
 						<i class="fas fa-cart-plus"></i>
-					</button>
+					</a>
 				</div>
 				<% } %>
 				
@@ -125,9 +136,10 @@
 							<a class="Image" href="/product/detail/<%= newProducts[i].ProId %> & <%= newProducts[i].ProCat%>" style="background-image: url('<%= newProducts[i].ProImg %>')"></a>
 							<a class="Name-Product" href="/product/detail/<%= newProducts[i].ProId %> & <%= newProducts[i].ProCat%>"><%= newProducts[i].ProName %></a> 
 							<label class="Price-Product"><%= newProducts[i].ProCurrentPrice %> VND</label>
-							<button class="AddToCart">
+							
+							<a href="/product/cart/add/<%= newProducts[i].ProId %>" class="AddToCart">
 								<i class="fas fa-cart-plus"></i>
-							</button>
+							</a>
 						</div>
 					<% } %>
 				</div>

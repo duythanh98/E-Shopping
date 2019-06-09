@@ -59,7 +59,7 @@
                             <label style="font-size: 1.5rem">Tác giả:</label>
                             <label class="Price-Product" style="font-size: 1.5rem"><%= proInfo[0].ProAuthor %></label><br>
                             <p class="" style="font-size: 1.25rem"><%= proInfo[0].ProDescription.slice(0,350) %>....</p>
-                            <a href="" class="btn btn-primary text-center">
+                            <a href="/product/cart/add/<%= proInfo[0].ProId %>" class="btn btn-primary text-center">
                                 <i class="fas fa-cart-plus"></i> ADD TO CART
                             </a>
                         </div>
@@ -113,9 +113,9 @@
                                     <a class="Image" href="/product/detail/<%= sameCatProducts[i].ProId %> & <%= sameCatProducts[i].ProCat%>" style="background-image: url('<%= sameCatProducts[i].ProImg %>')"></a>
                                     <a class="Name-Product" href="/product/detail/<%= sameCatProducts[i].ProId %> & <%= sameCatProducts[i].ProCat%> "><%= sameCatProducts[i].ProName %></a> 
                                     <label class="Price-Product"><%= sameCatProducts[i].ProCurrentPrice %> VND</label>
-                                    <button class="AddToCart">
+                                    <a href="/product/cart/add/<%= sameCatProducts[i].ProId %>" class="AddToCart">
                                         <i class="fas fa-cart-plus"></i>
-                                    </button>
+                                    </a>
                                 </div>
                             <% } %>
                         </div>
@@ -128,79 +128,35 @@
                             <h1 class="text-center text-white">Your Cart</h1>
                         </div>
                         <div class="row col-12" style="padding: 5%;">
-                            <div class="col-4">
-                                <img src="/images/1.jpg" class="Image-cart" alt="">
-                            </div>
-                            <div class="row col-8">
-                                <div class="col-10">
-                                    <h6 class="text-white">Tam sinh tam thế, thập lí đào hoa</h6>
-                                    <h6  >200,000</h6>
-                                    <a href="" class="Name-Product-1">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
+                            <% for(var i= 0; i < cart.length; i++) { %>
+                                <div class="col-4">
+                                    <img src="<%=cart[i].ProImg %>" class="Image-cart" alt="">
                                 </div>
-                                <div class="row col-2 text-center">
-                                    <a href="" class="Name-Product-1">
-                                        <i class="fas fa-plus"></i>
-                                    </a>
-                                    <span >1</span>
-                                    <a href="" class="Name-Product-1">
-                                        <i class="fas fa-minus"></i>
-                                    </a>
+                                <div class="row col-8">
+                                    <div class="col-10">
+                                        <h6 class="text-white"><%= cart[i].ProName %></h6>
+                                        <h6 > <%= cart[i].ProCurrentPrice%></h6>
+                                        <a href="/product/cart/remove/<%= cart[i].ProId %>" class="Name-Product-1">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                    <div class="row col-2 text-center">
+                                        <a href="/product/cart/add/<%= cart[i].ProId %>" class="Name-Product-1">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                        <span ><%= cart[i].ProAmount%></span>
+                                        <a href="/product/cart/sub/<%= cart[i].ProId %>" class="Name-Product-1">
+                                            <i class="fas fa-minus"></i>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class=" row col-12" style="padding: 5%;">
-                            <div class="col-4">
-                                <img src="/images/1.jpg" class="Image-cart" alt="">
-                            </div>
-                            <div class="row col-8">
-                                <div class="col-10">
-                                    <h6 class="text-white">Tam sinh tam thế, thập lí đào hoa</h6>
-                                    <h6 >200,000</h6>
-                                    <a href="" class="Name-Product-1">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                </div>
-                                <div class="row col-2 text-center">
-                                    <a href="" class="Name-Product-1">
-                                        <i class="fas fa-plus"></i>
-                                    </a>
-                                    <span >1</span>
-                                    <a href="" class="Name-Product-1">
-                                        <i class="fas fa-minus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" row col-12" style="padding: 5%;">
-                            <div class="col-4">
-                                <img src="/images/1.jpg" class="Image-cart" alt="">
-                            </div>
-                            <div class="row col-8">
-                                <div class="col-10">
-                                    <h6 class="text-white">Tam sinh tam thế, thập lí đào hoa</h6>
-                                    <h6 class="text-yellow">200,000</h6>
-                                    <a href="" class="Name-Product-1">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                </div>
-                                <div class="row col-2 text-center">
-                                    <a href="" class="Name-Product-1">
-                                        <i class="fas fa-plus"></i>
-                                    </a>
-                                    <span >1</span>
-                                    <a href="" class="Name-Product-1">
-                                        <i class="fas fa-minus"></i>
-                                    </a>
-                                </div>
-                            </div>
+                            <% } %>
                         </div>
                         <div class="col-12 text-center">
-                            <h5 class="text-white">Total: 600,000</h5>
+                            <h5 class="text-white">Total: <%=total%></h5>
                         </div>  
                         <div class="col-12 text-center" style="margin: 7% 0;">
-                            <a href="" class="clean-btn">
+                            <a href="/auth/payment" class="clean-btn">
                                 THANH TOÁN
                             </a>
                         </div>  

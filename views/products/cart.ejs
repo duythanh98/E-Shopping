@@ -52,60 +52,46 @@
                                 <tr>
                                 <th scope="col">Image</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Amount</th>
                                 <th scope="col" class="text-right">
                                 </th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <% for(var i = 0; i< cartItems.length; i++) { %>
                                 <tr>
                                     <td>
-                                        <img src="/images/1.jpg" height="100" width="100" alt="">
+                                        <img src=" <%= cartItems[i].ProImg %>" height="100" width="100" alt="">
                                     </td>
                                     <td>
                                         <h5>
-                                            Sao trên trời rất xa, sao của anh thật gần
+                                            <%= cartItems[i].ProName %>
                                         </h5>
                                     </td>
                                     <td>
-                                        <select class="form-control" id="exampleSelect1">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
+                                        <h5>
+                                            <%= cartItems[i].ProCurrentPrice %>
+                                        </h5>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="/product/cart/add/<%= cartItems[i].ProId %>" style="color: rgb(230, 143, 29);" class="text-center Name-Product-1">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                        <h5 class="">
+                                            <%= cartItems[i].ProAmount %>
+                                        </h5>
+                                        <a href="/product/cart/sub/<%= cartItems[i].ProId %>" style="color: rgb(230, 143, 29);" class="Name-Product-1">
+                                            <i class="fas fa-minus"></i>
+                                        </a>
                                     </td>
                                     <td class="text-right">
-                                        <a href="">
+                                        <a href="/product/cart/sub/<%= cartItems[i].ProId %>">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <img src="/images/2.jpg" height="100" width="100" alt="">
-                                    </td>
-                                    <td>
-                                        <h5>
-                                            Sao trên trời rất xa, sao của anh thật gần
-                                        </h5>
-                                    </td>
-                                    <td>
-                                        <select class="form-control" id="exampleSelect1">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                <% } %>
                                 <tr>
                                     <td>
                                         <input class="input-code" type="text" placeholder="Input Code">
@@ -128,7 +114,7 @@
                         </div>
                         <div class="col-12 ">
                             <label style="color: white;">Tiền sản phẩm:</label>
-                            <label style="color: rgb(255, 174, 0);">500,000</label>
+                            <label style="color: rgb(255, 174, 0);"><%= total %></label>
                         </div>  
                         <div class="col-12 ">
                             <label style="color: white;">Phí vận chuyển:</label>
@@ -139,7 +125,7 @@
                             <label style="color: rgb(255, 174, 0);">520,000</label>
                         </div>
                         <div class="col-12 text-center" style="margin: 7% 0;">
-                            <a href="" class="clean-btn">
+                            <a href="/auth/payment" class="clean-btn">
                                 THANH TOÁN
                             </a>
                         </div>  
