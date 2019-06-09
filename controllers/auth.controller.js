@@ -3,6 +3,7 @@ var bcrypt = require('bcrypt');
 var moment = require('moment');
 var passport = require('passport');
 
+
 module.exports.payment = function(req,res){
     res.render('auth/payment');
 }
@@ -68,4 +69,13 @@ module.exports.postLogin = function(req,res,next){
         return res.redirect('/');
       });
     })(req, res, next);
+}
+
+module.exports.profile = function(req,res,next){
+   res.end('profile');
+}
+
+module.exports.logout = function (req,res,next) {
+  req.logOut();
+  res.redirect('/auth/login');
 }

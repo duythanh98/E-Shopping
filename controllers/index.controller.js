@@ -1,12 +1,18 @@
 var productDB = require('../models/product');
 var catDB = require('../models/category');
+var cartDB = require('../models/cart');
+
 module.exports.home = function(req,res){
     
+    var sessionID = req.signedCookies.sessionID;
+
     Promise.all([productDB.all(),
     productDB.newProduct(),
     catDB.topCat(),
-    productDB.topSellProduct()])
-    .then(([allProduct, newProducts, topCats, topSellPros]) => {
+    productDB.topSellProduct(),
+    cartDB.loadBySession(sessionID)])
+    .then(([allProduct, newProducts, topCats, topSellPros,cart]) => {
+        console.log(cart.length);
         res.render("home", {
             allProduct: allProduct.slice(0,5),
             newProducts: newProducts,
@@ -14,8 +20,8 @@ module.exports.home = function(req,res){
             topCats: topCats,
             topSellPros: topSellPros,
             page: 1,
-            max: allProduct.length
-            
+            max: allProduct.length,
+            numberOfProInCart: cart.length
         });
     }).catch(err => {
         console.log(err);
