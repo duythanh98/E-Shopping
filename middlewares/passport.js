@@ -16,15 +16,11 @@ module.exports = function(app) {
       if (rows.length === 0) {
         return done(null, false, { message: 'Invalid username.' });
       }
-
+      
       var user = rows[0];
-      console.log(username);
-      console.log(password);
-      console.log(bcrypt.hashSync(password,10));
-      console.log(rows[0].CliPassword);
+
       var ret = bcrypt.compareSync(password,rows[0].CliPassword);
- 
-      console.log(ret);
+
       if (ret) {
         return done(null, user);
       }
