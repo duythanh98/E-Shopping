@@ -66,37 +66,28 @@
                         <div class="col-12 all-comments">
                             <h3 class="text-center" style="margin: 1.5rem 0px;">CÓ 2 BÌNH LUẬN</h3>
                             <div class="row">
-                                <div class="col-12" style="margin-top: 1rem;">
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <img src="/images/avatar.jpg" class="img-avatar" alt="">
-                                        </div>
-                                        <div class="col-10 comment">
-                                            <label class="user-comment" for="">Tony Stark</label> -
-                                            <label class="user-comment" for="">12/1/2019</label>
-                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit consequuntur minima repellat maxime, officia magnam totam eveniet nulla, odio temporibus natus optio, earum perferendis nisi quisquam consequatur unde fugiat magni.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12" style="margin-top: 1rem;">
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <img src="/images/avatar.jpg" class="img-avatar" alt="">
-                                        </div>
-                                        <div class="col-10 comment">
-                                            <label class="user-comment" for="">Tony Stark</label> -
-                                            <label class="user-comment" for="">12/1/2019</label>
-                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit consequuntur minima repellat maxime, officia magnam totam eveniet nulla, odio temporibus natus optio, earum perferendis nisi quisquam consequatur unde fugiat magni.</p>
+                                <% for(var i = 0; i< comment.length; i++) { %>
+                                    <div class="col-12" style="margin-top: 1rem;">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img src="/images/avatar.jpg" class="img-avatar" alt="">
+                                            </div>
+                                            <div class="col-10 comment">
+                                                <label class="user-comment" for=""><%= comment[i].CliName %></label> -
+                                                <label class="user-comment" for=""><%= moment(comment[i].DateUpload).format('MMM-DD-YYYY'); %></label>
+                                                <p><%= comment[i].Content %></p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                <% } %>
+                              
                                 <div class="col-12">
                                     <h4 class="text-center" style="margin-top: 1.5rem;">Để lại bình luận</h4>
                                     <h6 class="text-center" style="margin-bottom: 1rem;">(Bạn nên đăng nhập để có thể để lại bình luận tại mỗi sản phẩm)</h6>
                                     <div class="row">
                                         <div class="col-12">
-                                            <form action="">
-                                                <textarea class="your-comment" placeholder="Bình luận của bạn"></textarea>
+                                            <form action="" method="POST">
+                                                <textarea class="your-comment" name="txtComment" id="txtComment" placeholder="Bình luận của bạn"></textarea>
                                                 <button class="btn btn-primary submit-btn">Submit</button>
                                             </form>
                                         </div>

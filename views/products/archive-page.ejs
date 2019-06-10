@@ -47,14 +47,14 @@
                         <a href="" class="Name-Product" style="font-size: 1.1rem">HOME</a> /
                         <a href="" class="Name-Product" style="font-size: 1.1rem">TIỂU THUYẾT</a>
                     </div>
-                    <select class="custom-select custom-select-lg mb-1" style="width:95%; margin-left: 2%; display: inline-block;">
+                    <select id="sltFilter" class="custom-select custom-select-lg mb-1" style="width:95%; margin-left: 2%; display: inline-block;">
                         <option selected>Mặc định</option>
                         <option value="1">Giá giảm dần</option>
                         <option value="2">Giá tăng dần</option>
                         <option value="3">Mới nhất</option>
                     </select>
                     <div class="row">
-                        <div class="row list-product">
+                        <div id="allProduct" class="row list-product">
 
                           	<% for(var i=0; i < sameCatProducts.length; i++) { %>
                                 <div class="Component">
@@ -247,7 +247,24 @@
 				{
 					$('#btnLoadmore').css("visibility","hidden")
 				}
-			})
+            })
+            
+            $(document).on("change","#sltFilter", function(){
+                var kindOfFilter = $("#sltFilter").val();
+                
+                $.ajax({
+                    async: false,
+                    type: 'GET',
+                    url: "../archive/"+ '<%=catID%>' + "/filter/" + kindOfFilter,
+                    success: function(res){
+                        console.log(res);
+                        $('#allProduct').replaceWith(res);
+                    },
+                    error: function(xhr,ajaxOption,thrownError){
+                        alert("Failed");
+                    }
+                })
+            })
        
 		})
 	</script>

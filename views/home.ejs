@@ -22,12 +22,10 @@
 			<ul class="nav-links">
 				<li><a href="">HOME </a></li>
 				<li><a href="">ABOUT <i class="fas fa-chevron-down"></i></a>
-					
 					<ul class="child-links">
 						<li><a href="">ME</a></li>
 						<li><a href="">HISTORY</a></li>
 					</ul>
-					
 				</li>
 				<% if(isAuthenticated != true){ %>
 					<li><a href="">USER <i class="fas fa-chevron-down"></i></a>
@@ -42,6 +40,7 @@
 						<ul class="child-links">
 							<li><a href="javascript: $('#frmSignout').submit();">Logout</a></li>
 							<li><a href="/auth/profile">Profile</a></li>
+							<li><a href="/auth/payment">Payment</a></li>
 						</ul>
 					</li>
 				<% } %>
@@ -274,7 +273,7 @@
 					url: "../page/"+soTrang,
 					success: function(res){
 						$('#allProduct').append(res);
-						console.log(res);
+						
 					},
 					error: function(xhr,ajaxOption,thrownError){
 						alert("Fail");
@@ -283,7 +282,7 @@
 
 				current += 5;
 				console.log(current);
-				if(current == '<%=max%>')
+				if(current >= '<%=max%>')
 				{
 					$('#btnLoadmore').css("visibility","hidden")
 				}
@@ -291,7 +290,9 @@
 
 			$(document).on("keyup","#txtSearch", function(){
 				var data = $(this).val();
-				
+				current = 5;
+				soTrang = 1;
+				$('#btnLoadmore').css("visibility","visible");
 				$.ajax({
 					async: false,
 					type: "POST",
@@ -301,6 +302,7 @@
 					data: {data:data},
 					success: function(res){
 						$('#allProduct').replaceWith(res);
+					
 					},
 					error: function(xhr,ajaxOption,thrownError){
 						alert("Failed");
