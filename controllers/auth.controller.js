@@ -2,10 +2,22 @@ var userDB = require('../models/user');
 var bcrypt = require('bcrypt');
 var moment = require('moment');
 var passport = require('passport');
-
+var cartDB = require("../models/cart");
 
 module.exports.payment = function(req,res){
-    res.render('auth/payment');
+    var sessionID = req.signedCookies.sessionID;
+
+    Promise.all([cartDB.loadBySession(sessionID)]).then(([cart]) => {
+      let total = 0;
+      cart.forEach(x => {
+          total += parseInt(x.ProCurrentPrice)* parseInt(x.ProAmount);
+      });
+      res.render('auth/payment',{
+        cart: cart,
+        total: total
+      });
+    })
+  
 }
 
 module.exports.register = function(req,res,next) {
@@ -66,7 +78,7 @@ module.exports.postLogin = function(req,res,next){
         if (err)
           return next(err);
   
-        return res.redirect('/');
+        return res.redirect("/");
       });
     })(req, res, next);
 }
@@ -79,3 +91,4 @@ module.exports.logout = function (req,res,next) {
   req.logOut();
   res.redirect('/auth/login');
 }
+

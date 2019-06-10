@@ -1,14 +1,18 @@
 var productDB = require("../models/product");
 var cartDB = require("../models/cart");
+var commentDB = require("../models/comment");
+var moment = require('moment');
 
 module.exports.detail = function(req,res) {
     var ProId = req.params.id;
     var CatId = req.params.catId;
     var sessionID = req.signedCookies.sessionID;
-
+    
     Promise.all([productDB.single(ProId),
     productDB.getSameCatProduct(CatId),
-    cartDB.loadBySession(sessionID)]).then(([proInfo,sameCatProducts,cart]) => {
+    cartDB.loadBySession(sessionID),
+    commentDB.load(ProId)]).then(([proInfo,sameCatProducts,cart,comment]) => {
+        console.log(comment);
         let total = 0;
         cart.forEach(x => {
             total += parseInt(x.ProCurrentPrice)* parseInt(x.ProAmount);
@@ -18,7 +22,9 @@ module.exports.detail = function(req,res) {
             proInfo : proInfo,
             sameCatProducts: sameCatProducts,
             cart: cart,
-            total: total
+            total: total,
+            comment: comment,
+            moment: moment
         });
     }).catch(err => {
         console.log(err);
@@ -175,5 +181,56 @@ module.exports.pageByCat = function(req,res){
     }).catch(err => {
         console.log(err);
     })
+}
+
+module.exports.postComment = function(req,res,next){
+
+    var comment = req.body.txtComment;
+    console.log(comment);
+    console.log(req.params.id);
+    console.log(req.user);
+    var date = new Date();
     
+    var entity = {
+        Content: comment,
+        ProId: req.params.id,
+        CliId: req.user.CliId,
+        DateUpLoad: date
+    }
+
+    commentDB.add(entity).then(id => {
+        res.redirect('back');   
+    })
+}
+
+module.exports.filter = function(req,res,next){
+    var type = req.params.type;
+
+    productDB.filterProductByPrice(req.params.catID).then(rows => {
+
+        if(type == 1){
+            let proOfTypeOne = rows;
+       
+            res.render('pagination/pageSearch',{
+                allProduct: proOfTypeOne
+            });
+        }else if (type == 2){
+
+            let proOfTypeTwo = rows.reverse();
+            res.render('pagination/pageSearch',{
+                allProduct: proOfTypeTwo
+            });
+        }else if(type == 3){
+
+            let proOfTypeThree = rows.sort((x,y) => {
+                return y.PublishedDate.getTime() - x.PublishedDate.getTime();
+            })
+           
+            res.render('pagination/pageSearch',{
+                allProduct: proOfTypeThree
+            });
+        }
+       
+    })
+  
 }
