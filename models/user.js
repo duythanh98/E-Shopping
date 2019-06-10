@@ -6,5 +6,8 @@ module.exports = {
     },
     add: (entity) => {
         return db.add('clients',entity);
+    },
+    find: (id) => {
+        return db.load(`SELECT * FROM clients WHERE CliId = ${id}`);
     }
 }

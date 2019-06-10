@@ -35,5 +35,11 @@ module.exports = {
     },
     searchProductByName: (textSearch) => {
         return db.load(`SELECT * FROM products WHERE MATCH(ProName) against('${textSearch}')`);
+    },
+    filterProductByPrice: (catID) => {
+        return db.load(`SELECT * FROM products
+        WHERE ProCat = ${catID} 
+        ORDER by ProCurrentPrice DESC
+        LIMIT 6`);
     }
 }
