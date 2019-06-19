@@ -5,7 +5,7 @@ var createConnection = () =>{
         host     : 'localhost',
         user     : 'root',
         password : '',
-        database : 'qlbh',
+        database : 'bookshop',
         port: "3306"
       });
 }
