@@ -47,10 +47,10 @@ module.exports = {
     },
 
     update: entity => {
-        return db.update('products', 'ProID', entity);
+        return db.update('products', 'ProId', entity);
     },
 
     delete: id => {
-        return db.delete('products', 'ProID', id);
+        return db.delete('products', 'ProId', id);
     },
 }

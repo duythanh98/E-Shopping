@@ -247,6 +247,7 @@ module.exports.add = function(req, res) {
 }
 
 module.exports.postAdd = function(req, res) {
+    var date = moment(req.body.PublishedDate, 'DD/MM/YYYY hh:mm:ss').format('YYYY-MM-DD hh:mm:ss');
     var entity = {
         ProName: req.body.ProName,
         ProAuthor: req.body.ProAuthor,
@@ -254,7 +255,7 @@ module.exports.postAdd = function(req, res) {
         ProCurrentPrice: req.body.ProCurrentPrice,
         ProCat: req.body.ProCat,
         ProImg: req.body.ProImg,
-        PublishedDate: req.body.PublishedDate,
+        PublishedDate: date,
         ProAmount: req.body.ProAmount,
         Sold: 0
     }
@@ -282,18 +283,18 @@ module.exports.update = function(req, res) {
 
 module.exports.postUpdate = function(req, res) {
     var entity = {
+        ProId: req.params.id,
         ProName: req.body.ProName,
         ProAuthor: req.body.ProAuthor,
         ProDescription: req.body.ProDescription,
         ProCurrentPrice: req.body.ProCurrentPrice,
-        ProCat: req.body.ProCat,
         ProImg: req.body.ProImg,
-        PublishedDate: req.body.PublishedDate,
         ProAmount: req.body.ProAmount
     }
+    console.log(entity);
 
     productDB.update(entity).then(id => {
-        res.render("products/add");
+        res.redirect("/product");
     }).catch(err => {
         console.log(err);
     })
