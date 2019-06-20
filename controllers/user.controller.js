@@ -1,4 +1,4 @@
-
+var userDB = require('../models/user');
 
 // module.exports.index = function(req,res){
 //     var listUser = userModel.all();
@@ -10,7 +10,7 @@
 //     }).catch(err => {
 //         console.log(err);
 //     })
-    
+
 // };
 
 module.exports.add = function(req,res){
@@ -19,7 +19,7 @@ module.exports.add = function(req,res){
 
 
 module.exports.postCreate = function(req,res){
-   
+
     var entity = {
         UserName: req.body.UserName
     }
@@ -31,4 +31,3 @@ module.exports.postCreate = function(req,res){
         console.log(err);
     })
 };
-

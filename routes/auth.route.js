@@ -8,7 +8,7 @@ router.get('/payment',authMiddleware,authController.payment);
 router.get('/register',authController.register);
 router.get('/is-available', authController.isAvailable);
 router.get("/login", authController.login);
-router.get('/profile',authMiddleware,authController.profile);
+router.get('/profile', authController.updateProfile);
 router.get('/fb',  passport.authenticate('facebook', {scope: ['email']}));
 router.get('/fb/cb',passport.authenticate('facebook', {
     failureRedirect: 'back',
@@ -19,5 +19,6 @@ router.get('/fb/cb',passport.authenticate('facebook', {
 //POST
 router.post('/register',authController.postRegister);
 router.post("/login",authController.postLogin);
+router.post('/profile', authController.postUpdateProfile);
 router.post('/logout',authMiddleware,authController.logout);
 module.exports = router;

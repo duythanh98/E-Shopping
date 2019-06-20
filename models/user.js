@@ -9,5 +9,14 @@ module.exports = {
     },
     find: (id) => {
         return db.load(`SELECT * FROM clients WHERE CliId = ${id}`);
-    }
+    },
+    single: id => {
+        return db.load(`SELECT * FROM clients WHERE CliId = ${id}`);
+    },
+    update: entity => {
+        return db.update('clients', 'CliId', entity);
+    },
+    delete: id => {
+        return db.delete('clients', 'CliId', id);
+    },
 }
