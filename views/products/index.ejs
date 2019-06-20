@@ -13,12 +13,14 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col" class="text-right">
-                            <a href="/category/add">
+                        <th scope="col" width="5%">ID</th>
+                        <th scope="col" width="10%">Image</th>
+                        <th scope="col" width="20%">Name</th>
+                        <th scope="col" width="5%">Category</th>
+                        <th scope="col" width="5%">Amount</th>
+                        <th scope="col" width="5%">Sold</th>
+                        <th scope="col" class="text-center" width="15%">
+                            <a href="/product/add">
                                 <i class="fas fa-plus-circle"></i>
                                 Add Product
                             </a>
@@ -28,17 +30,19 @@
                     <tbody>
                         <% for(var i=0; i < list.length; i++) { %>
                         <tr>
-                            <th scope="row"><%= list[i].ProID %></th>
+                            <th scope="row"><%= list[i].ProId %></th>
                             <td>
-                                <img src="<%= list[i].Image %>" height="100" width="100" alt="">
+                                <img src="<%= list[i].ProImg %>" height="100" width="100" alt="">
                             </td>
                             <td><%= list[i].ProName %></td>
-                            <td><%= list[i].Category %></td>
-                            <td class="text-right">
-                                <a href="">
+                            <td><%= list[i].ProCat %></td>
+                            <td><%= list[i].ProAmount %></td>
+                            <td><%= list[i].Sold %></td>
+                            <td class="text-center">
+                                <a href="/product/update/<%= list[i].ProId %>">
                                     <i class="fas fa-pencil-alt"></i>
                                 </a>
-                                <a href="">
+                                <a href="/product/delete/<%= list[i].ProId %>">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>

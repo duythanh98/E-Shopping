@@ -11,6 +11,12 @@ router.get('/cart/sub/:proID',controller.subCart);
 router.get('/cart/remove/:proID',controller.remove);
 router.get('/archive/:catID/:page',controller.pageByCat);
 router.get('/archive/:catID/filter/:type', controller.filter);
+router.get('/add', controller.add);
+router.get('/update/:id', controller.update);
+router.get('/', controller.index);
+router.get('/delete/:id', controller.delete);
 //POST
 router.post('/detail/:id&:catId',authMiddleware,controller.postComment);
+router.post('/add', controller.postAdd);
+router.post('/update/:id', controller.postUpdate);
 module.exports = router;

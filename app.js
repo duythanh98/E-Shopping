@@ -14,14 +14,14 @@ var proRoute = require('./routes/product.route')
 var authRoute = require('./routes/auth.route')
 var indexRoute = require('./routes/index.route')
 var pageRoute = require('./routes/page.route')
-var adminRoute = require('./routes/admin.route')
+// var adminRoute = require('./routes/admin.route')
 
 app.use(morgan("dev"));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser('asfcbxjhcbjzh'));
 app.use(express.static(__dirname + "/public"));
-app.use(flash());
+// app.use(flash());
 
 require('./middlewares/view-engine')(app);
 require('./middlewares/session')(app);
@@ -39,7 +39,7 @@ app.use('/category',catRoute);
 app.use('/product',proRoute);
 app.use('/auth',authRoute);
 app.use('/page',pageRoute);
-app.use('/admin', adminRoute);
+// app.use('/admin', adminRoute);
 
 // If error occured
 app.use((req, res, next) => {
