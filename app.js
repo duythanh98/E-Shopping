@@ -11,6 +11,7 @@ var flash = require('http-errors');
 var userRoute = require('./routes/user.route')
 var catRoute = require('./routes/category.route')
 var proRoute = require('./routes/product.route')
+var promRoute = require('./routes/promotion.route')
 var authRoute = require('./routes/auth.route')
 var indexRoute = require('./routes/index.route')
 var pageRoute = require('./routes/page.route')
@@ -37,6 +38,7 @@ app.use('/', indexRoute);
 app.use('/users',userRoute);
 app.use('/category',catRoute);
 app.use('/product',proRoute);
+app.use('/promotion',promRoute);
 app.use('/auth',authRoute);
 app.use('/page',pageRoute);
 // app.use('/admin', adminRoute);

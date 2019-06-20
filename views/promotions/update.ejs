@@ -1,0 +1,72 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Shop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+</head>
+<body>
+    <form method="POST" >
+        <div class="card shadow " style="margin-top: 7%; margin: 7% 20%;">
+            <h5 class="card-header">
+                Update Promotion
+            </h5>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="PromId">Promotion ID:</label>
+                    <input type="text" class="form-control" id="PromId" autofocus name="PromId" value="<%= promotion[0].PromId %>" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="PromCode">Promotion Code:</label>
+                    <input type="text" class="form-control" id="PromCode" autofocus name="PromCode" value="<%= promotion[0].PromCode %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="Discount">Discount:</label>
+                    <input type="number" step="0.01" class="form-control" id="Discount" name="Discount" min="0" max="1" value="<%= promotion[0].Discount %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="MinCash">Minimum Cash (VND):</label>
+                    <input type="number" class="form-control" id="MinCash" name="MinCash" min="0" value="<%= promotion[0].MinCash %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="AppliedTime">Applied Time:</label>
+                    <input type="text" class="form-control" id="AppliedTime" name="AppliedTime" value="<%= promotion[0].AppliedTime %>">
+                </div>
+                <div class="form-group">
+                    <label for="ExpiredTime">Expired Time:</label>
+                    <input type="text" class="form-control" id="ExpiredTime" name="ExpiredTime" value="<%= promotion[0].ExpiredTime %>">
+                </div>
+
+                <a href="/promotion" class="btn btn-primary">
+                    <i class="fas fa-backward"></i>
+                    List
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-check-square"></i>
+                    Update
+                </button>
+            </div>
+            
+        </div>
+    </form>
+    <script>
+        $(function () {
+            $("#AppliedTime").datetimepicker({
+                format: 'd/m/Y',
+                timepicker: true,
+                mark: true
+            })
+            $("#ExpiredTime").datetimepicker({
+                format: 'd/m/Y',
+                timepicker: true,
+                mark: true
+            })
+        })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+</body>
+</html>

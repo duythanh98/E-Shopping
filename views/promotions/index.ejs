@@ -9,15 +9,19 @@
     <div class="container" style="margin-top: 50px;">
         <div class="card shadow " style="width: 100%;">
             <h4 class="card-header text-center">
-                Categories
+                Promotions
             </h4>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col" width="10%" class="text-center">ID</th>
-                        <th scope="col" width="30%">Category</th>
+                        <th scope="col" width="15%">Code</th>
+                        <th scope="col" width="10%">Discount</th>
+                        <th scope="col" width="15%">Min Cash</th>
+                        <th scope="col" width="15%">Applied Time</th>
+                        <th scope="col" width="15%">Expired Time</th>
                         <th scope="col" class="text-center" width="20%">
-                            <a href="/category/add">
+                            <a href="/promotion/add">
                                 <i class="fas fa-plus-circle"></i>
                                 Add Category
                             </a>
@@ -27,13 +31,17 @@
                 <tbody>
                     <% for(var i=0; i < list.length; i++) { %>
                     <tr>
-                        <th scope="row" class="text-center"><%= list[i].CatId %></th>
-                        <td><%= list[i].CatName %></td>
+                        <th scope="row" class="text-center"><%= list[i].PromId %></th>
+                        <td><%= list[i].PromCode %></td>
+                        <td><%= list[i].Discount %></td>
+                        <td><%= list[i].MinCash %></td>
+                        <td><%= list[i].AppliedTime %></td>
+                        <td><%= list[i].ExpiredTime %></td>
                         <td class="text-center">
-                            <a href="/category/update/<%= list[i].CatId %>">
+                            <a href="/promotion/update/<%= list[i].PromId %>">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
-                            <a href="/category/delete/<%= list[i].CatId %>">
+                            <a href="/promotion/delete/<%= list[i].PromId %>">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
