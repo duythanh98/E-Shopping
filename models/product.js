@@ -53,4 +53,11 @@ module.exports = {
     delete: id => {
         return db.delete('products', 'ProId', id);
     },
+
+    totalCartPrice: SessionID => {
+        return db.load(`SELECT SUM(p.ProCurrentPrice * c.ProAmount) AS Total
+                        FROM carts c INNER JOIN (SELECT ProCurrentPrice, ProId
+                                                FROM products ) AS p
+                        ON SessionID = '${SessionID}' AND c.ProId = p.ProId`)
+    }
 }

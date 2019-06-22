@@ -2,6 +2,7 @@ var productDB = require("../models/product");
 var cartDB = require("../models/cart");
 var commentDB = require("../models/comment");
 var categoryDB = require("../models/category");
+var promotionDB = require("../models/promotion");
 var moment = require('moment');
 
 module.exports.detail = function(req,res) {
@@ -323,4 +324,28 @@ module.exports.delete = function(req, res) {
         })
     }
     res.redirect('/product');
+};
+
+module.exports.checkCode = function(req, res, next) {
+    var code = req.body.code;
+    console.log(req.body);
+
+    promotionDB.singleByCode(code).then(promo => {
+        if (promo.length > 0) {
+            console.log(promo[0].Discount + ' discount');
+
+            var totalPrice = parseInt(req.body.total);
+            if (promo[0].Discount > 0) {
+                totalPrice *= (1 - parseFloat(promo[0].Discount));
+                // Test làm tròn giá lên đơn vị trăm đồng
+                console.log(Math.round(totalPrice / 100) * 100);
+                console.log(totalPrice);         
+            }
+            res.json(totalPrice);
+        } else {
+        }
+    }).catch(err => {
+        console.log(err);
+        res.json(400);
+    })
 };

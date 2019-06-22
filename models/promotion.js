@@ -4,8 +4,11 @@ module.exports = {
 	all: () => {
 		return db.load('select * from promotions');
 	},
-	single: id => {
+	singleByID: id => {
 		return db.load(`SELECT * FROM promotions WHERE PromId = ${id}`);
+	},
+	singleByCode: code => {
+		return db.load(`SELECT * FROM promotions WHERE PromCode = '${code}'`);
 	},
 	add: entity => {
 		return db.add('promotions', entity);

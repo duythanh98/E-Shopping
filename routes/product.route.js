@@ -19,4 +19,5 @@ router.get('/delete/:id', controller.delete);
 router.post('/detail/:id&:catId',authMiddleware,controller.postComment);
 router.post('/add', controller.postAdd);
 router.post('/update/:id', controller.postUpdate);
+router.post('/check-code', controller.checkCode);
 module.exports = router;

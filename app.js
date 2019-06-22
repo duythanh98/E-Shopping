@@ -24,6 +24,7 @@ app.use(express.static(__dirname + "/public"));
 // app.use(flash());
 
 require('./middlewares/view-engine')(app);
+require('./middlewares/helpers')(app);
 require('./middlewares/session')(app);
 require('./middlewares/passport')(app);
 require('./middlewares/passport-facebook')(app);
