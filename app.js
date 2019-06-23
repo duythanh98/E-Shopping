@@ -12,6 +12,7 @@ var userRoute = require('./routes/user.route')
 var catRoute = require('./routes/category.route')
 var proRoute = require('./routes/product.route')
 var promRoute = require('./routes/promotion.route')
+var orderRoute = require('./routes/order.route')
 var authRoute = require('./routes/auth.route')
 var indexRoute = require('./routes/index.route')
 var pageRoute = require('./routes/page.route')
@@ -21,7 +22,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser('asfcbxjhcbjzh'));
 app.use(express.static(__dirname + "/public"));
-// app.use(flash());
 
 require('./middlewares/view-engine')(app);
 require('./middlewares/helpers')(app);
@@ -29,16 +29,18 @@ require('./middlewares/session')(app);
 require('./middlewares/passport')(app);
 require('./middlewares/passport-facebook')(app);
 
+var authAdmin = require('./middlewares/auth-admin')
 app.use(require('./middlewares/auth.local.mdw'));
 app.use(require('./middlewares/session.mdw'));
 var port = 3000;
 
 
 app.use('/', indexRoute);
-app.use('/users',userRoute);
-app.use('/category',catRoute);
+app.use('/users', authAdmin, userRoute);
+app.use('/category', authAdmin, catRoute);
 app.use('/product',proRoute);
-app.use('/promotion',promRoute);
+app.use('/promotion', authAdmin, promRoute);
+app.use('/order', orderRoute);
 app.use('/auth',authRoute);
 app.use('/page',pageRoute);
 
