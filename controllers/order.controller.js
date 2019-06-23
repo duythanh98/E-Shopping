@@ -101,10 +101,10 @@ module.exports.postConfirm = function(req, res) {
         console.log(n + " cart rows are deleted.")
       })
     })
-    res.redirect("/order/order-success");
+    res.redirect("/");
   }).catch(err => {
     console.log(err);
-    res.redirect("/order/order-fail");
+    res.redirect("/");
   })
 };
 

@@ -28,6 +28,11 @@ module.exports.home = function(req,res){
     })
 };
 
+module.exports.admin = function(req,res){
+    
+    res.redirect('/product');
+};
+
 module.exports.page = function(req,res){
 
     let page = req.params.page;
