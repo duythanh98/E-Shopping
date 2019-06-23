@@ -1,24 +1,12 @@
 var userDB = require('../models/user');
+var cartDB = require('../models/cart');
+var receiverDB = require('../models/receiver');
+var orderDB = require('../models/order');
+var orderedProDB = require('../models/orderedproduct');
 var bcrypt = require('bcrypt');
 var moment = require('moment');
 var passport = require('passport');
 var cartDB = require("../models/cart");
-
-module.exports.payment = function(req,res){
-  var sessionID = req.signedCookies.sessionID;
-
-  Promise.all([cartDB.loadBySession(sessionID)]).then(([cart]) => {
-    let total = 0;
-    cart.forEach(x => {
-      total += parseInt(x.ProCurrentPrice)* parseInt(x.ProAmount);
-    });
-    res.render('auth/payment',{
-      cart: cart,
-      total: total
-    });
-  })
-  
-}
 
 module.exports.register = function(req,res,next) {
   res.render('auth/register');
@@ -78,7 +66,17 @@ module.exports.postLogin = function(req,res,next){
       if (err)
         return next(err);
 
-      return res.redirect("/");
+      var retUrl;
+      switch (user.Permission) {
+        case 1:
+        retUrl = '/admin';
+        break;
+        default:
+        retUrl = '/';
+        break;
+      }
+      
+      return res.redirect(retUrl);
     });
   })(req, res, next);
 }
@@ -107,7 +105,7 @@ module.exports.postUpdateProfile = function (req, res) {
     CliEmail: req.body.email
   }
   userDB.update(entity).then(id => {
-      res.redirect('/');
+    res.redirect('/');
   }).catch(err => {
     console.log(err);
     return res.redirect('/');

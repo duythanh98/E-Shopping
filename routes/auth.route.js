@@ -4,7 +4,6 @@ var authController = require("../controllers/auth.controller");
 var authMiddleware = require('../middlewares/auth');
 var passport = require('passport');
 //GET
-router.get('/payment',authMiddleware,authController.payment);
 router.get('/register',authController.register);
 router.get('/is-available', authController.isAvailable);
 router.get("/login", authController.login);
@@ -17,8 +16,8 @@ router.get('/fb/cb',passport.authenticate('facebook', {
 );
 
 //POST
-router.post('/register',authController.postRegister);
-router.post("/login",authController.postLogin);
-router.post('/profile', authController.postUpdateProfile);
+router.post('/register', authController.postRegister);
+router.post("/login", authController.postLogin);
+router.post('/profile', authMiddleware, authController.postUpdateProfile);
 router.post('/logout',authMiddleware,authController.logout);
 module.exports = router;
