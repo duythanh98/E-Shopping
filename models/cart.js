@@ -24,6 +24,10 @@ module.exports = {
          WHERE SessionID = '${sessionId}' 
          AND ProId = ${proId}`);
     },
+    deleteBySessionID: sessionId => {
+        return db.load(`DELETE FROM carts
+         WHERE SessionID = '${sessionId}'`);
+    },
     remove: (proId) => {
         return db.delete('carts','ProId',proId);
     }

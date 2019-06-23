@@ -42,6 +42,7 @@ module.exports.postAdd = function(req, res) {
 module.exports.update = function(req, res) {
     var id = req.params.id;
     promotionDB.single(id).then(rows => {
+        console.log(rows[0]);
         res.render("promotions/update", {
             promotion: rows
         });
