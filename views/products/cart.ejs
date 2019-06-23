@@ -92,16 +92,6 @@
                                 </td>
                             </tr>
                             <% } %>
-                            <tr>
-                                <td>
-                                    <input class="input-code" type="text" name="code" id="txtCode" placeholder="Input Code">
-                                </td>
-                                <td colspan="3">
-                                    <button onclick="return CheckCode();" class="btn btn-primary text-center" id="btnCheckCode">
-                                        <i class="fas fa-check"></i> CHECK CODE
-                                    </button>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -118,14 +108,14 @@
                     </div>  
                     <div class="col-12 ">
                         <label style="color: white;">Phí vận chuyển:</label>
-                        <label style="color: rgb(255, 174, 0);">20,000</label>
+                        <label style="color: rgb(255, 174, 0);"><%= formatPrice(shippingFee) %></label>
                     </div>  
                     <div class="col-12">
                         <label style="color: white;">Tổng cộng:</label>
-                        <label style="color: rgb(255, 174, 0);">520,000</label>
+                        <label style="color: rgb(255, 174, 0);"><%= formatPrice(total + shippingFee) %></label>
                     </div>
                     <div class="col-12 text-center" style="margin: 7% 0;">
-                        <a href="/auth/payment" class="clean-btn">
+                        <a href="/order/payment" class="clean-btn">
                             THANH TOÁN
                         </a>
                     </div>  
@@ -234,38 +224,6 @@
                 $("html,body").animate({scrollTop: 0},800);
             });
         })
-
-        // Chưa formatPrice() được
-        function ChangeTotalPrice(total) {
-            console.log(total);
-            $("#Total").html(total.toString());
-            // document.getElementById("Total").innerHTML = formatPrice(total);
-        }
-
-        function CheckCode() {
-            var code = $('#txtCode').val();
-            $.ajax({
-                url: '/product/check-code',
-                method: 'POST',
-                dataType: 'json',
-                data: JSON.stringify({
-                    code: $('#txtCode').val(),
-                    total: <%= total %>
-
-                }),
-                contentType: 'application/json',
-                cache: false,
-                timeout: 5000,
-                success: (total) => {
-                    console.log('POST successfully!');
-                    ChangeTotalPrice(total);
-                },
-                error: (error) => {
-                    console.log('Error occured when POST');
-                }
-            });
-            return false;
-        }
         
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
