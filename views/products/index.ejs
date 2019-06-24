@@ -6,7 +6,6 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 <body>
@@ -58,22 +57,22 @@
             <div class="card-header text-center">
                 <div class="row">
                     <a role="button" class="btn btn-primary-outline col-md-1" href="/admin">Admin</a>
-                    <h4 class="text-center">Promotion</h4>
+                    <h4 class="text-center">Product</h4>
                 </div>
             </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col" width="10%" class="text-center">ID</th>
-                        <th scope="col" width="15%">Code</th>
-                        <th scope="col" width="10%">Discount</th>
-                        <th scope="col" width="15%">Min Cash</th>
-                        <th scope="col" width="15%">Applied Time</th>
-                        <th scope="col" width="15%">Expired Time</th>
-                        <th scope="col" class="text-center" width="20%">
-                            <a href="/promotion/add">
+                        <th scope="col" width="5%">ID</th>
+                        <th scope="col" width="10%">Image</th>
+                        <th scope="col" width="20%">Name</th>
+                        <th scope="col" width="5%">Category</th>
+                        <th scope="col" width="5%">Amount</th>
+                        <th scope="col" width="5%">Sold</th>
+                        <th scope="col" class="text-center" width="15%">
+                            <a href="/product/add">
                                 <i class="fas fa-plus-circle"></i>
-                                Add Category
+                                Add Product
                             </a>
                         </th>
                     </tr>
@@ -81,14 +80,19 @@
                 <tbody>
                     <% for(var i=0; i < list.length; i++) { %>
                     <tr>
-                        <th scope="row" class="text-center"><%= list[i].PromId %></th>
-                        <td><%= list[i].PromCode %></td>
-                        <td><%= list[i].Discount %></td>
-                        <td><%= list[i].MinCash %></td>
-                        <td><%= formatDate(list[i].AppliedTime) %></td>
-                        <td><%= formatDate(list[i].ExpiredTime) %></td>
+                        <th scope="row"><%= list[i].ProId %></th>
+                        <td>
+                            <img src="<%= list[i].ProImg %>" height="100" width="100" alt="">
+                        </td>
+                        <td><%= list[i].ProName %></td>
+                        <td><%= list[i].ProCat %></td>
+                        <td><%= list[i].ProAmount %></td>
+                        <td><%= list[i].Sold %></td>
                         <td class="text-center">
-                            <a href="/promotion/delete/<%= list[i].PromId %>">
+                            <a href="/product/update/<%= list[i].ProId %>">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <a href="/product/delete/<%= list[i].ProId %>">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
