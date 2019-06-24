@@ -8,7 +8,6 @@ var morgan = require('morgan');
 var flash = require('express-flash');
 var flash = require('http-errors');
 
-var userRoute = require('./routes/user.route')
 var catRoute = require('./routes/category.route')
 var proRoute = require('./routes/product.route')
 var promRoute = require('./routes/promotion.route')
@@ -28,7 +27,7 @@ require('./middlewares/helpers')(app);
 require('./middlewares/session')(app);
 require('./middlewares/passport')(app);
 require('./middlewares/passport-facebook')(app);
-require('./middlewares/upload-img')(app);
+// require('./middlewares/upload-img')(app);
 
 var authAdmin = require('./middlewares/auth-admin')
 app.use(require('./middlewares/auth.local.mdw'));
@@ -37,7 +36,6 @@ var port = 3000;
 
 
 app.use('/', indexRoute);
-app.use('/users', authAdmin, userRoute);
 app.use('/category', authAdmin, catRoute);
 app.use('/product',proRoute);
 app.use('/promotion', authAdmin, promRoute);

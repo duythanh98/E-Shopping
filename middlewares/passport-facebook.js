@@ -17,7 +17,7 @@ module.exports = function(app) {
             console.log(profile);
 
             userDB.find(profile._json.id).then(user => {
-                if(user.length > 0){
+                if(user){
                     return done(null,user);
                 }
                 else{

@@ -25,7 +25,6 @@
                         <li><a href="/category">CATEGORY</a></li>
                         <li><a href="/product">PRODUCT</a></li>
                         <li><a href="/promotion">PROMOTION</a></li>
-                        <li><a href="/users">USER</a></li>
                     </ul>  
                 </li>
                 <% if(isAuthenticated != true){ %>
@@ -53,27 +52,24 @@
             </div>
         </nav>
     </div>
+    
     <div class="container" style="margin-top: 80px;">
         <div class="card shadow " style="width: 100%;">
             <div class="card-header text-center">
                 <div class="row">
                     <a role="button" class="btn btn-primary-outline col-md-1" href="/admin">Admin</a>
-                    <h4 class="text-center">Product</h4>
+                    <h4 class="text-center">Category</h4>
                 </div>
             </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col" width="5%">ID</th>
-                        <th scope="col" width="10%">Image</th>
-                        <th scope="col" width="20%">Name</th>
-                        <th scope="col" width="5%">Category</th>
-                        <th scope="col" width="5%">Amount</th>
-                        <th scope="col" width="5%">Sold</th>
-                        <th scope="col" class="text-center" width="15%">
-                            <a href="/product/add">
+                        <th scope="col" width="10%" class="text-center">ID</th>
+                        <th scope="col" width="30%">Category</th>
+                        <th scope="col" class="text-center" width="20%">
+                            <a href="/category/add">
                                 <i class="fas fa-plus-circle"></i>
-                                Add Product
+                                Add Category
                             </a>
                         </th>
                     </tr>
@@ -81,19 +77,13 @@
                 <tbody>
                     <% for(var i=0; i < list.length; i++) { %>
                     <tr>
-                        <th scope="row"><%= list[i].ProId %></th>
-                        <td>
-                            <img src="<%= list[i].ProImg %>" height="100" width="100" alt="">
-                        </td>
-                        <td><%= list[i].ProName %></td>
-                        <td><%= list[i].ProCat %></td>
-                        <td><%= list[i].ProAmount %></td>
-                        <td><%= list[i].Sold %></td>
+                        <th scope="row" class="text-center"><%= list[i].CatId %></th>
+                        <td><%= list[i].CatName %></td>
                         <td class="text-center">
-                            <a href="/product/update/<%= list[i].ProId %>">
+                            <a href="/category/update/<%= list[i].CatId %>">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
-                            <a href="/product/delete/<%= list[i].ProId %>">
+                            <a href="/category/delete/<%= list[i].CatId %>">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
@@ -103,6 +93,7 @@
             </table>
         </div>
     </div>
+
     <script>        
         $(document).ready(function(){
 

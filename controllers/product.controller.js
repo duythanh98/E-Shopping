@@ -248,20 +248,22 @@ module.exports.add = function(req, res) {
 
 module.exports.postAdd = function(req, res) {
     var date = moment(req.body.PublishedDate, 'DD/MM/YYYY hh:mm:ss').format('YYYY-MM-DD hh:mm:ss');
+    console.log(req.body.ProName);
+    console.log(req.file.path);
     var entity = {
         ProName: req.body.ProName,
         ProAuthor: req.body.ProAuthor,
         ProDescription: req.body.ProDescription,
         ProCurrentPrice: req.body.ProCurrentPrice,
         ProCat: req.body.ProCat,
-        ProImg: req.body.ProImg,
+        ProImg: "images/products/" + req.file.filename,
         PublishedDate: date,
         ProAmount: req.body.ProAmount,
         Sold: 0
     }
     
     productDB.add(entity).then(id => {
-        res.render("products/add");
+        res.redirect("/product");
     }).catch(err => {
         console.log(err);
     })
@@ -289,7 +291,6 @@ module.exports.postUpdate = function(req, res) {
         ProAuthor: req.body.ProAuthor,
         ProDescription: req.body.ProDescription,
         ProCurrentPrice: req.body.ProCurrentPrice,
-        ProImg: req.body.ProImg,
         PublishedDate: date,
         ProAmount: req.body.ProAmount
     }

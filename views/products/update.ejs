@@ -26,7 +26,6 @@
                         <li><a href="/category">CATEGORY</a></li>
                         <li><a href="/product">PRODUCT</a></li>
                         <li><a href="/promotion">PROMOTION</a></li>
-                        <li><a href="/users">USER</a></li>
                     </ul>  
                 </li>
                 <% if(isAuthenticated != true){ %>
@@ -79,10 +78,6 @@
                 <div class="form-group">
                     <label for="ProCurrentPrice">Current Price (VND):</label>
                     <input type="number" class="form-control" id="ProCurrentPrice" name="ProCurrentPrice" min="0" value="<%= product[0].ProCurrentPrice %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="ProImg">Image Link:</label>
-                    <input type="text" class="form-control" id="ProImg" name="ProImg" value="<%= product[0].ProImg %>" required>
                 </div>
                 <div class="form-group">
                     <label for="PublishedDate">Published Date:</label>
