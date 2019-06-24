@@ -30,7 +30,7 @@ module.exports.home = function(req,res){
 
 module.exports.admin = function(req,res){
     
-    res.redirect('/product');
+    res.render('admin');
 };
 
 module.exports.page = function(req,res){

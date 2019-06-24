@@ -28,6 +28,7 @@ require('./middlewares/helpers')(app);
 require('./middlewares/session')(app);
 require('./middlewares/passport')(app);
 require('./middlewares/passport-facebook')(app);
+require('./middlewares/upload-img')(app);
 
 var authAdmin = require('./middlewares/auth-admin')
 app.use(require('./middlewares/auth.local.mdw'));
