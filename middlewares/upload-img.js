@@ -19,7 +19,7 @@ module.exports = function (app) {
 					error: err.message
 				});
 			}
-			res.json({req.filename});
+			res.json({req.file.path});
 		})
 	})
 }
