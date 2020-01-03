@@ -15,6 +15,7 @@ var orderRoute = require('./routes/order.route')
 var authRoute = require('./routes/auth.route')
 var indexRoute = require('./routes/index.route')
 var pageRoute = require('./routes/page.route')
+var adminRoute = require('./routes/admin.route')
 
 app.use(morgan("dev"));
 app.use(bodyParser.json())
@@ -42,6 +43,7 @@ app.use('/promotion', authAdmin, promRoute);
 app.use('/order', orderRoute);
 app.use('/auth',authRoute);
 app.use('/page',pageRoute);
+app.use('/admin',adminRoute);
 
 // If error occured
 app.use((req, res, next) => {
